@@ -8,7 +8,7 @@ This repo contains FTC Team 10357 Voltemort's code from the Relic Recovery, Rove
 
 ## Autonomous for Skystone Season
 
-Our autonomous code is located [TeamCode/src/main/java/org/firstinspires/ftc/teamcode](TeamCode/src/main/java/org/firstinspires/ftc/teamcode).
+Our autonomous code is located in [TeamCode/src/main/java/org/firstinspires/ftc/teamcode](TeamCode/src/main/java/org/firstinspires/ftc/teamcode).
 
 The following files are used in competitions:
 - SkystoneAutoParkBlue - only parks
@@ -24,11 +24,13 @@ Our full autonomous does the following:
  - Places two Skystones on the foundation
  - Turns the foundation
  - Parks
+ 
+ 
 Max points: 43
 
 ## Tele-Op for Skystone Season
 
-Our tele-op code is located [TeamCode/src/main/java/org/firstinspires/ftc/teamcode/SkystoneManualDrive.java](TeamCode/src/main/java/org/firstinspires/ftc/teamcode/SkystoneManualDrive.java).
+Our tele-op code is located in [TeamCode/src/main/java/org/firstinspires/ftc/teamcode/SkystoneManualDrive.java](TeamCode/src/main/java/org/firstinspires/ftc/teamcode/SkystoneManualDrive.java).
 
 
 Mitali Gandhe
