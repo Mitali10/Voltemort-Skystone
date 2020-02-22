@@ -34,6 +34,7 @@ public class SkystoneManualDrive extends OpMode {
     static final double GRIPPER_OPEN_POS = 0.2;
     static final double ARM_UP = 0.15;
     static final double ARM_DOWN = 0.44;
+    static final double ARM_DIRECTLY_DOWN = 0.9;
     static final double  CAPSTONE_BACK = 0.2;
     static final double  CAPSTONE_FORWARD = .9;
 
@@ -139,7 +140,12 @@ public class SkystoneManualDrive extends OpMode {
             capstoneServo.setPosition(CAPSTONE_BACK);
         } else if(gamepad2.start) {
             capstoneServo.setPosition(CAPSTONE_FORWARD);
+        }
 
+        if(gamepad2.dpad_left) {
+            turnServo.setPosition(ARM_DIRECTLY_DOWN);
+        } else if(gamepad2.dpad_right) {
+            turnServo.setPosition(ARM_DOWN);
         }
 
 
