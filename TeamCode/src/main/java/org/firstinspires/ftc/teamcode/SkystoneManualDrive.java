@@ -34,8 +34,8 @@ public class SkystoneManualDrive extends OpMode {
     static final double GRIPPER_OPEN_POS = 0.2;
     static final double ARM_UP = 0.15;
     static final double ARM_DOWN = 0.44;
-    static final double CAPSTONE_FORWARD = 0.2;
-    static final double  CAPSTONE_BACK = .9;
+    static final double  CAPSTONE_BACK = 0.2;
+    static final double  CAPSTONE_FORWARD = .9;
 
     double turn_pos = 0.5;
     double turn_increment = 0.0025;
@@ -96,11 +96,11 @@ public class SkystoneManualDrive extends OpMode {
 //        }
 
 
-        if (gamepad1.right_bumper) {
-            normalSpeed = false;
-        } else if (gamepad1.left_bumper) {
-            normalSpeed = true;
-        }
+//        if (gamepad1.right_bumper) {
+//            normalSpeed = false;
+//        } else if (gamepad1.left_bumper) {
+//            normalSpeed = true;
+//        }
 
         /* gamepad2 controls */
         if(gamepad2.y) {
@@ -125,11 +125,11 @@ public class SkystoneManualDrive extends OpMode {
 
 
         if(gamepad2.dpad_up) {
-            leftSlide.setPower(-0.3);
-            rightSlide.setPower(0.3);
+            leftSlide.setPower(0.3);
+            rightSlide.setPower(-0.3);
         } else if(gamepad2.dpad_down) {
-            leftSlide.setPower(0.2);
-            rightSlide.setPower(-0.2);
+            leftSlide.setPower(-0.2);
+            rightSlide.setPower(0.2);
         } else {
             leftSlide.setPower(0.0);
             rightSlide.setPower(0.0);
@@ -205,16 +205,16 @@ public class SkystoneManualDrive extends OpMode {
         rearRight = Range.clip(rearRight, -1, 1);
 
 
-        if (normalSpeed) {
-            frontLeft = (float) scaleInput(frontLeft);
-            rearLeft = (float) scaleInput(rearLeft);
-            frontRight = (float) scaleInput(frontRight);
-            rearRight = (float) scaleInput(rearRight);
-        } else {
+        if (gamepad1.right_bumper) {
             frontLeft = (float) scaleInputSlow(frontLeft);
             rearLeft = (float) scaleInputSlow(rearLeft);
             frontRight = (float) scaleInputSlow(frontRight);
             rearRight = (float) scaleInputSlow(rearRight);
+        } else {
+            frontLeft = (float) scaleInput(frontLeft);
+            rearLeft = (float) scaleInput(rearLeft);
+            frontRight = (float) scaleInput(frontRight);
+            rearRight = (float) scaleInput(rearRight);
         }
 
 
