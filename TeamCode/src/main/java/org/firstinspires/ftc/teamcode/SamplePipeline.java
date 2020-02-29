@@ -11,6 +11,7 @@ class SamplePipeline extends OpenCvPipeline {
 
     Mat mat = new Mat();
     String location = "unknown";
+    String alliance = "";
     @Override
     public Mat processFrame(Mat input) {
         /*
@@ -43,16 +44,31 @@ class SamplePipeline extends OpenCvPipeline {
 //        Imgproc.rectangle( mat,new Rect(400,startRow,80,60), new Scalar(255, 0, 0), 4);
 
 
-        int startRow = 107;//200;
-        int endRow = 240;
+        int startRow = 135;//200;
+        int h = 30;
+        int w = 55;
 
-        Mat leftSample = mat.submat(startRow,endRow,60,100);
-        Mat middleSample = mat.submat(startRow,endRow,140,180);
-        Mat rightSample = mat.submat(startRow,endRow,220,260);
+        Mat leftSample, middleSample, rightSample;
 
-        Imgproc.rectangle( mat,new Rect(30,startRow,60,30), new Scalar(255, 0, 0), 4);
-        Imgproc.rectangle( mat,new Rect(120,startRow,60,30), new Scalar(255, 0, 0), 4);
-        Imgproc.rectangle( mat,new Rect(210,startRow,60,30), new Scalar(255, 0, 0), 4);
+        if(alliance == "red") {
+            leftSample = mat.submat(startRow,startRow + h,30,30 + w);
+            middleSample = mat.submat(startRow,startRow + h,115,115 + w);
+            rightSample = mat.submat(startRow,startRow + h,200,200 + w);
+
+            Imgproc.rectangle( mat,new Rect(30, startRow, w, h), new Scalar(255, 0, 0), 4);
+            Imgproc.rectangle( mat,new Rect(115, startRow, w, h), new Scalar(255, 0, 0), 4);
+            Imgproc.rectangle( mat,new Rect(200, startRow, w, h), new Scalar(255, 0, 0), 4);
+
+        } else {
+            leftSample = mat.submat(startRow,startRow + h,60,60 + w);
+            middleSample = mat.submat(startRow,startRow + h,145,145 + w);
+            rightSample = mat.submat(startRow,startRow + h,230,230 + w);
+
+            Imgproc.rectangle( mat,new Rect(60, startRow, w, h), new Scalar(255, 0, 0), 4);
+            Imgproc.rectangle( mat,new Rect(145, startRow, w, h), new Scalar(255, 0, 0), 4);
+            Imgproc.rectangle( mat,new Rect(230, startRow, w, h), new Scalar(255, 0, 0), 4);
+        }
+
 
 
         double leftVal = Core.sumElems(leftSample).val[2];

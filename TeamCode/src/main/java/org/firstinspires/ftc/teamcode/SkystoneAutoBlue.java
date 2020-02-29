@@ -18,7 +18,7 @@ public class SkystoneAutoBlue extends SkystoneAutonomousBase {
     public void runOpMode() {
 
         setupAllHardware();
-        initOpenCV();
+        initOpenCV("blue");
 
         int pos = -1;
         int d = 0;
@@ -62,7 +62,7 @@ public class SkystoneAutoBlue extends SkystoneAutonomousBase {
                         encoderStrafeRight(0.4, 2, 5);
                     } else {
                         pos = 3;
-                        encoderStrafeLeft(0.4, 6, 8);
+                        encoderStrafeLeft(0.4, 8, 8);
                     }
 
                     nextTask = Task.LIFT_SKYSTONE;
@@ -123,7 +123,7 @@ public class SkystoneAutoBlue extends SkystoneAutonomousBase {
 
                 case RETURN_TO_STONES:
 
-                    encoderDrive(0.5, -8, 5);
+                    encoderDrive(0.5, -9, 5);
 
                     turnServo.setPosition(ARM_UP);
 
@@ -140,11 +140,13 @@ public class SkystoneAutoBlue extends SkystoneAutonomousBase {
 
                     encoderStrafeRight(0.6, 48 + d + 24 + 15 + 5, 10);
 
+                    turnServo.setPosition(ARM_DOWN);
+
                     gripperServo.setPosition(GRIPPER_OPEN_POS);
 
                     turnToZero();
 
-                    turnServo.setPosition(ARM_DOWN);
+                    sleep(200);
 
                     encoderDriveForwardUntilDistance(0.2, 10, 2);
 
@@ -219,7 +221,7 @@ public class SkystoneAutoBlue extends SkystoneAutonomousBase {
                     turnServo.setPosition(0.0);
 
                     encoderStrafeRight(0.6, 15, 10);
-                    encoderDrive(0.8, -42, 10);
+                    encoderDrive(0.7, -40, 10);
 
                     nextTask = Task.HALT;
                     break;

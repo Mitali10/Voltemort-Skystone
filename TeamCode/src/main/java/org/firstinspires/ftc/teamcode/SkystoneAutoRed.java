@@ -18,7 +18,7 @@ public class SkystoneAutoRed extends SkystoneAutonomousBase {
     public void runOpMode() {
 
         setupAllHardware();
-        initOpenCV();
+        initOpenCV("red");
 
         int pos = -1;
         int d = 0; //36;
@@ -59,7 +59,7 @@ public class SkystoneAutoRed extends SkystoneAutonomousBase {
                     } else if(loc == "center") {
                         pos = 2;
                         d = 8;
-                        encoderStrafeLeft(0.4, 2, 5);
+                        encoderStrafeLeft(0.4, 3, 5);
                     } else {
                         pos = 3;
                         encoderStrafeRight(0.4, 6, 8);
@@ -93,7 +93,7 @@ public class SkystoneAutoRed extends SkystoneAutonomousBase {
                     foundationServo1.setPosition(0.6);  // horiz pos
                     foundationServo2.setPosition(0.55);  // horiz pos
 
-                    encoderDrive(0.3, -7, 10);
+                    encoderDrive(0.3, -8, 10);
                     encoderStrafeRight(0.6, 47 + d + 15 + 4, 20);
 
                     turnToZero();

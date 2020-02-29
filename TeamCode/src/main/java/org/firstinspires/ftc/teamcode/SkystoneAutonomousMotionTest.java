@@ -18,7 +18,7 @@ public class SkystoneAutonomousMotionTest extends SkystoneAutonomousBase {
     public void runOpMode() {
 
         setupAllHardware();
-        //initOpenCV();
+        initOpenCV("blue");
 
         nextTask = Task.MOVE;
         telemetry.addData("Hardware setup, ready to play", "");
@@ -37,15 +37,22 @@ public class SkystoneAutonomousMotionTest extends SkystoneAutonomousBase {
 
                 case MOVE:
 
-                    encoderDriveForwardUntilDistance(0.2, 10, 20);
+                    String loc = pipeline.location;
 
-                    telemetry.addData("distanceTraveled:", distanceTraveled);
+                    telemetry.addData("location:", loc);
                     telemetry.update();
 
-
-                    nextTask = Task.HALT;
-
                     break;
+
+//                    encoderDriveForwardUntilDistance(0.2, 10, 20);
+//
+//                    telemetry.addData("distanceTraveled:", distanceTraveled);
+//                    telemetry.update();
+//
+//
+//                    nextTask = Task.HALT;
+//
+//                    break;
 
 
 //                    if(checkRecognitions(0.8)) {

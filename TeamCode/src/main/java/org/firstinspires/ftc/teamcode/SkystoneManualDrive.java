@@ -21,7 +21,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class SkystoneManualDrive extends OpMode {
     private DcMotor wheelFrontRight, wheelFrontLeft, wheelRearRight, wheelRearLeft, leftSlide, rightSlide;
-    private Servo gripperServo, turnServo, foundationServo1, foundationServo2, capstoneServo;
+    private Servo gripperServo, turnServo, foundationServo1, foundationServo2, capstoneServo, capstoneDropServo;
     private boolean frontFacing = true, normalSpeed = true;
     DistanceSensor rangeSensor;
 
@@ -34,10 +34,13 @@ public class SkystoneManualDrive extends OpMode {
     static final double GRIPPER_OPEN_POS = 0.2;
     static final double ARM_UP = 0.15;
     static final double ARM_DOWN = 0.44;
-    static final double ARM_DIRECTLY_DOWN = 0.9;
+    static final double ARM_DIRECTLY_DOWN = 0.77;
     static final double  CAPSTONE_BACK = 0.2;
     static final double  CAPSTONE_FORWARD = .9;
+    static final double CAPSTONE_RELEASE = .7;
+    static final double CAPSTONE_HOLD = 0.01;
 
+    boolean locked = false;
     double turn_pos = 0.5;
     double turn_increment = 0.0025;
 
@@ -79,9 +82,11 @@ public class SkystoneManualDrive extends OpMode {
         gripperServo = hardwareMap.get(Servo.class, "gripperServo");
         turnServo = hardwareMap.get(Servo.class, "turnServo");
         capstoneServo = hardwareMap.get(Servo.class, "capstoneServo");
+        capstoneDropServo = hardwareMap.get(Servo.class, "capstoneDropServo");
 
         foundationServo1 = hardwareMap.get(Servo.class, "foundationServo1");
         foundationServo2 = hardwareMap.get(Servo.class, "foundationServo2");
+
         rangeSensor = hardwareMap.get(DistanceSensor.class, "rangeSensor");
 
     }
@@ -104,7 +109,7 @@ public class SkystoneManualDrive extends OpMode {
 //        }
 
         /* gamepad2 controls */
-        if(gamepad2.y) {
+        if(gamepad2.y && !locked) {
             gripperServo.setPosition(GRIPPER_OPEN_POS);
         } else if(gamepad2.a) {
             gripperServo.setPosition(GRIPPER_CLOSE_POS);
@@ -118,9 +123,9 @@ public class SkystoneManualDrive extends OpMode {
             foundationServo2.setPosition(0.55);  // horiz pos
         }
 
-        if(gamepad2.left_bumper) {
+        if(gamepad2.left_bumper && !locked) {
             turnServo.setPosition(ARM_UP);
-        } else if(gamepad2.right_bumper) {
+        } else if(gamepad2.right_bumper && !locked) {
             turnServo.setPosition(ARM_DOWN);
         }
 
@@ -136,17 +141,30 @@ public class SkystoneManualDrive extends OpMode {
             rightSlide.setPower(0.0);
         }
 
-        if(gamepad2.back) {
+        if(gamepad2.right_trigger > 0.6) {
             capstoneServo.setPosition(CAPSTONE_BACK);
-        } else if(gamepad2.start) {
+        } else if(gamepad2.left_trigger > 0.6) {
             capstoneServo.setPosition(CAPSTONE_FORWARD);
         }
 
         if(gamepad2.dpad_left) {
+            gripperServo.setPosition(GRIPPER_OPEN_POS + 0.2);
             turnServo.setPosition(ARM_DIRECTLY_DOWN);
-        } else if(gamepad2.dpad_right) {
+        } else if(gamepad2.dpad_right && !locked) {
             turnServo.setPosition(ARM_DOWN);
         }
+
+        if(gamepad2.start) {
+            capstoneDropServo.setPosition(CAPSTONE_HOLD);
+        } else if(gamepad2.back) {
+            capstoneDropServo.setPosition(CAPSTONE_RELEASE);
+        }
+
+//        if(gamepad1.b) {
+//            locked = true;
+//        } else if(gamepad2.x){
+//            locked = false;
+//        }
 
 
 

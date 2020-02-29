@@ -534,7 +534,7 @@ public class SkystoneAutonomousBase extends LinearOpMode {
 
         if(getHeading() < 180) {
 
-            while(getHeading() > 3) {
+            while(getHeading() > 4) {
                 telemetry.addData("turning right; current heading:", getHeading());
                 telemetry.update();
                 wheelFrontLeft.setPower(0.1);
@@ -545,7 +545,7 @@ public class SkystoneAutonomousBase extends LinearOpMode {
 
 
         } else {
-            while(getHeading() < 357) {
+            while(getHeading() < 356) {
                 telemetry.addData("turning left; current heading:", getHeading());
                 telemetry.update();
                 wheelFrontLeft.setPower(-0.1);
@@ -626,12 +626,13 @@ public class SkystoneAutonomousBase extends LinearOpMode {
         return (i * Math.PI * WHEEL_DIA) / (ENCODER_CPR * GEAR_RATIO * Math.sqrt(2));
     }
 
-    public void initOpenCV() {
+    public void initOpenCV(String alliance) {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         cam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam"), cameraMonitorViewId);
         cam.openCameraDevice();
 
         pipeline = new SamplePipeline();
+        pipeline.alliance = alliance;
         cam.setPipeline(pipeline);
 
         telemetry.addData("Going to start streaming", "");
