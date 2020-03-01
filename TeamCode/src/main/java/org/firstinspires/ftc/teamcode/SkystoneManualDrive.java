@@ -37,8 +37,8 @@ public class SkystoneManualDrive extends OpMode {
     static final double ARM_DIRECTLY_DOWN = 0.77;
     static final double  CAPSTONE_BACK = 0.2;
     static final double  CAPSTONE_FORWARD = .9;
-    static final double CAPSTONE_RELEASE = .7;
-    static final double CAPSTONE_HOLD = 0.01;
+    static final double CAPSTONE_HOLD = .7;
+    static final double  CAPSTONE_RELEASE = 0.01;
 
     boolean locked = false;
     double turn_pos = 0.5;
@@ -143,6 +143,7 @@ public class SkystoneManualDrive extends OpMode {
 
         if(gamepad2.right_trigger > 0.6) {
             capstoneServo.setPosition(CAPSTONE_BACK);
+            capstoneDropServo.setPosition(CAPSTONE_HOLD);
         } else if(gamepad2.left_trigger > 0.6) {
             capstoneServo.setPosition(CAPSTONE_FORWARD);
         }
@@ -155,9 +156,9 @@ public class SkystoneManualDrive extends OpMode {
         }
 
         if(gamepad2.start) {
-            capstoneDropServo.setPosition(CAPSTONE_HOLD);
-        } else if(gamepad2.back) {
             capstoneDropServo.setPosition(CAPSTONE_RELEASE);
+        } else if(gamepad2.back) {
+            capstoneDropServo.setPosition(CAPSTONE_HOLD);
         }
 
 //        if(gamepad1.b) {
