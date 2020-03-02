@@ -47,7 +47,7 @@ public class SkystoneAutonomousBase extends LinearOpMode {
     Servo gripperServo, turnServo, foundationServo1, foundationServo2;
     DistanceSensor rangeSensor;
 
-    static final double GRIPPER_CLOSE_POS = .97;
+    static final double GRIPPER_CLOSE_POS = .95;
     static final double GRIPPER_OPEN_POS = 0.2;
     static final double ARM_UP = 0.13;
     static final double ARM_DOWN = 0.44;

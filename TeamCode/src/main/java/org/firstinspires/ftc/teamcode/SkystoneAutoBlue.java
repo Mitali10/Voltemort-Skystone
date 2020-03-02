@@ -55,11 +55,11 @@ public class SkystoneAutoBlue extends SkystoneAutonomousBase {
                     if(loc == "right") {
                         pos = 1;
                         d = 16;
-                        encoderStrafeRight(0.4, 9, 6);
+                        encoderStrafeRight(0.4, 8, 6);
                     } else if(loc == "center") {
                         pos = 2;
                         d = 8;
-                        encoderStrafeRight(0.4, 2, 5);
+                        //encoderStrafeRight(0.4, 2, 5);
                     } else {
                         pos = 3;
                         encoderStrafeLeft(0.4, 8, 8);
@@ -133,7 +133,7 @@ public class SkystoneAutoBlue extends SkystoneAutonomousBase {
                     if(pos == 1) {
                         d = -26;
                     } else if(pos == 2) {
-                        d = d - 3;
+                        d = d - 1;
                     } else if(pos == 3) {
                         d--;
                     }

@@ -55,7 +55,7 @@ public class SkystoneAutoRed extends SkystoneAutonomousBase {
                     if(loc == "left") {
                         pos = 1;
                         d = 16;
-                        encoderStrafeLeft(0.4, 9, 6);
+                        encoderStrafeLeft(0.4, 10, 6);
                     } else if(loc == "center") {
                         pos = 2;
                         d = 8;
